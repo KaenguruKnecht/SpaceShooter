@@ -13,5 +13,9 @@ namespace SpaceShooter
         {
 
         }
+        public Ship() 
+        {
+            
+        }
     }
 }

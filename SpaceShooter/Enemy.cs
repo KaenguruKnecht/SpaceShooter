@@ -8,5 +8,10 @@ namespace SpaceShooter
 {
     internal class Enemy : Ship
     {
+        public void Design()
+        {
+
+        }
+        public Enemy() { }
     }
 }

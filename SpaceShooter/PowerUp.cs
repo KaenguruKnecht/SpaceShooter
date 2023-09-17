@@ -12,5 +12,6 @@ namespace SpaceShooter
         {
 
         }
+        public PowerUp() { }
     }
 }

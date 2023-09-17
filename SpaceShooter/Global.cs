@@ -12,7 +12,7 @@ namespace SpaceShooter
     {
         public static Canvas SpaceCanvas { get; set; }
         public static Key LastButton { get; set; }
-        
+
         static Global()
         {
 

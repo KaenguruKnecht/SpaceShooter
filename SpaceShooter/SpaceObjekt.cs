@@ -17,6 +17,7 @@ namespace SpaceShooter
         public double Y_Postion { get; set; }
         public int X_Vector { get; set; }
         public int Y_Vector { get; set; }
+        public bool Alive { get; set; }
 
         public void Move()
         {
@@ -25,8 +26,12 @@ namespace SpaceShooter
         }
         public void Show()
         {
-            Canvas.SetLeft(_shape, X_Postion);
-            Canvas.SetTop(_shape, Y_Postion);
+            if (Alive)
+            {
+                Canvas.SetLeft(_shape, X_Postion);
+                Canvas.SetTop(_shape, Y_Postion);
+                Global.SpaceCanvas.Children.Add(_shape);
+            }
         }
         public void RemoveFromCanvas()
         {
