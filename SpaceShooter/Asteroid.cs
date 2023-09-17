@@ -7,6 +7,7 @@ namespace SpaceShooter
 {
     internal class Asteroid : SpaceObjekt
     {
+        double variedRadius = 0;
         public void Design()
         {
             PointCollection myPointCollection = new PointCollection();
@@ -16,7 +17,6 @@ namespace SpaceShooter
             for (int i= 0; i < 20; i++)
             {
                 double angle = 2 * Math.PI * i / 20; // Winkelberechnung
-                double variedRadius = 25;
                 double x = variedRadius * Math.Cos(angle);
                 double y = variedRadius * Math.Sin(angle);
 
@@ -24,12 +24,15 @@ namespace SpaceShooter
             }
             Shape.Points = myPointCollection;
         }
+
         public Asteroid() 
         {
+            int Lane = Global.rnd.Next(0, 8);
+            X_Vector = Global.rnd.Next(-40, -5);
             Alive = true;
-            X_Postion = Global.SpaceCanvas.ActualWidth;
-            Y_Postion = 200;
-            X_Vector = -5;
+            variedRadius = Global.fieldSize / 2;
+            X_Position = Global.SpaceCanvas.ActualWidth;
+            Y_Position = Global.Lanes[Lane];
         }
     }
 }

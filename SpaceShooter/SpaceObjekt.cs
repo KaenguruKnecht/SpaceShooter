@@ -13,29 +13,33 @@ namespace SpaceShooter
     {
         private Polygon _shape = new Polygon();
         public Polygon Shape { get { return _shape; } set { _shape = value; } }
-        public double X_Postion { get; set; }
-        public double Y_Postion { get; set; }
+        public double X_Position { get; set; }
+        public double Y_Position { get; set; }
         public int X_Vector { get; set; }
         public int Y_Vector { get; set; }
         public bool Alive { get; set; }
 
         public void Move()
         {
-            X_Postion = X_Postion + X_Vector;
-            Y_Postion = Y_Postion + Y_Vector;
+            X_Position = X_Position + X_Vector;
+            Y_Position = Y_Position + Y_Vector;
         }
         public void Show()
         {
             if (Alive)
             {
-                Canvas.SetLeft(_shape, X_Postion);
-                Canvas.SetTop(_shape, Y_Postion);
+                Canvas.SetLeft(_shape, X_Position);
+                Canvas.SetTop(_shape, Y_Position);
                 Global.SpaceCanvas.Children.Add(_shape);
             }
         }
         public void RemoveFromCanvas()
         {
             Global.SpaceCanvas.Children.Remove(_shape);
+        }
+        public void Collision()
+        {
+
         }
     }
 }
