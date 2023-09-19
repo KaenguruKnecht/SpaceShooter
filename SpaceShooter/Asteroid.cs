@@ -8,7 +8,7 @@ namespace SpaceShooter
     internal class Asteroid : SpaceObjekt
     {
         double variedRadius = 0;
-        public void Design()
+        internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();
 
@@ -19,13 +19,12 @@ namespace SpaceShooter
                 double angle = 2 * Math.PI * i / 20; // Winkelberechnung
                 double x = variedRadius * Math.Cos(angle);
                 double y = variedRadius * Math.Sin(angle);
-
                 myPointCollection.Add(new Point(x, y));
             }
             Shape.Points = myPointCollection;
         }
 
-        public Asteroid() 
+        internal Asteroid() 
         {
             int Lane = Global.rnd.Next(0, 8);
             X_Vector = Global.rnd.Next(-40, -5);

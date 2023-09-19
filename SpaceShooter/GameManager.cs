@@ -13,8 +13,9 @@ namespace SpaceShooter
         static Player _testShip = new Player();
         // static Asteroid _asteroid = new Asteroid();
         static List<Asteroid> Astroids = new List<Asteroid>();
+        static List<PowerUp> PowerUps = new List<PowerUp>();
 
-        public static void Initialize()
+        internal static void Initialize()
         {
             Global.fieldSize = Convert.ToInt32(Global.SpaceCanvas.ActualHeight / 8);
             for (int i = 0; i < 8; i++)
@@ -28,13 +29,13 @@ namespace SpaceShooter
 
             _testShip = new Player();
             _testShip.Design();
-
         }
 
-        public static void OnTick(object sender, EventArgs e)
+        internal static void OnTick(object sender, EventArgs e)
         {
             _testShip.RemoveFromCanvas();
             _testShip.SetMovingDirection();
+            _testShip.Collision();
             _testShip.Move();
             _testShip.Show();
 
@@ -46,6 +47,15 @@ namespace SpaceShooter
             else
             {
                 Global.asteroidTimer--;
+            }
+            if (Global.powerUpTimer == 0)
+            {
+                PowerUps.Add(new PowerUp());
+                Global.powerUpTimer = 30;
+            }
+            else
+            {
+                Global.powerUpTimer--;
             }
             //for (int i = Astroids.Count; i == 0; i--)
             //{
@@ -63,12 +73,16 @@ namespace SpaceShooter
             foreach (Asteroid item in Astroids)
             {
                 item.RemoveFromCanvas();
-                if (item.Alive)
-                {
-                    item.Move();
-                    item.Show();
-                    item.Design();
-                }
+                item.Move();
+                item.Design();
+                item.Show();
+            }
+            foreach (PowerUp item in PowerUps)
+            {
+                item.RemoveFromCanvas();
+                item.Move();
+                item.Design();
+                item.Show();
             }
         }
     }

@@ -12,7 +12,7 @@ namespace SpaceShooter
 {
     internal class Player : Ship
     {
-        public void SetMovingDirection()
+        internal void SetMovingDirection()
         {
             switch (Global.LastButton)
             {
@@ -34,7 +34,7 @@ namespace SpaceShooter
                     break;
             }
         }
-        public void Design()
+        internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();
 
@@ -52,7 +52,26 @@ namespace SpaceShooter
 
             Shape.Points = myPointCollection;
         }
-        public Player()
+        internal void Collision()
+        {
+            if (X_Position <= 0 && X_Vector < 0)
+            {
+                X_Vector = 0;
+            }
+            if (X_Position >= Global.SpaceCanvas.ActualWidth - 50 && X_Vector > 0)
+            {
+                X_Vector = 0;
+            }
+            if (Y_Position <= 0 && Y_Vector < 0)
+            {
+                Y_Vector = 0;
+            }
+            if (Y_Position >= Global.SpaceCanvas.ActualHeight - 30 && Y_Vector > 0)
+            {
+                Y_Vector = 0;
+            }
+        }
+        internal Player()
         {
             Alive = true;
         }

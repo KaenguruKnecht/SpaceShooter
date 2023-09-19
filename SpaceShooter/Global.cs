@@ -10,12 +10,13 @@ namespace SpaceShooter
 {
     static class Global
     {
-        public static Canvas SpaceCanvas { get; set; }
-        public static Key LastButton { get; set; }
-        public static List<int> Lanes { get; set; }
-        public static Random rnd = new Random();
-        public static int fieldSize;
-        public static int asteroidTimer = 0;
+        internal static Canvas SpaceCanvas { get; set; }
+        internal static Key LastButton { get; set; }
+        internal static List<int> Lanes { get; set; }
+        internal static Random rnd = new Random();
+        internal static int fieldSize;
+        internal static int asteroidTimer = 0;
+        internal static int powerUpTimer = 0;
 
         static Global()
         {

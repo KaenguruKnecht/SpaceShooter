@@ -12,19 +12,19 @@ namespace SpaceShooter
     internal class SpaceObjekt
     {
         private Polygon _shape = new Polygon();
-        public Polygon Shape { get { return _shape; } set { _shape = value; } }
-        public double X_Position { get; set; }
-        public double Y_Position { get; set; }
-        public int X_Vector { get; set; }
-        public int Y_Vector { get; set; }
-        public bool Alive { get; set; }
+        protected Polygon Shape { get { return _shape; } set { _shape = value; } }
+        internal double X_Position { get; set; }
+        internal double Y_Position { get; set; }
+        internal int X_Vector { get; set; }
+        internal int Y_Vector { get; set; }
+        internal bool Alive { get; set; }
 
-        public void Move()
+        internal void Move()
         {
             X_Position = X_Position + X_Vector;
             Y_Position = Y_Position + Y_Vector;
         }
-        public void Show()
+        internal void Show()
         {
             if (Alive)
             {
@@ -33,13 +33,9 @@ namespace SpaceShooter
                 Global.SpaceCanvas.Children.Add(_shape);
             }
         }
-        public void RemoveFromCanvas()
+        internal void RemoveFromCanvas()
         {
             Global.SpaceCanvas.Children.Remove(_shape);
-        }
-        public void Collision()
-        {
-
         }
     }
 }

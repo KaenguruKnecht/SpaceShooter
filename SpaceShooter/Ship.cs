@@ -9,11 +9,11 @@ namespace SpaceShooter
 {
     internal class Ship : SpaceObjekt
     {
-        public void Design()
+        internal void Design()
         {
 
         }
-        public Ship() 
+        internal Ship() 
         {
             
         }
