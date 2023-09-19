@@ -28,10 +28,17 @@ namespace SpaceShooter
 
             Shape.Points = myPointCollection;
         }
+        internal void BorderCollision()
+        {
+            if (X_Position <= 0)
+            {
+                Alive = false;
+            }
+        }
         internal PowerUp() 
         {
-            int Lane = Global.rnd.Next(0, 8);
-            X_Vector = Global.rnd.Next(-40, -5);
+            int Lane = Global.Rnd.Next(0, 8);
+            X_Vector = Global.Rnd.Next(-40, -5);
             Alive = true;
             X_Position = Global.SpaceCanvas.ActualWidth;
             Y_Position = Global.Lanes[Lane];

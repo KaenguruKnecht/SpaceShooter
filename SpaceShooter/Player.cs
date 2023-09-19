@@ -12,26 +12,93 @@ namespace SpaceShooter
 {
     internal class Player : Ship
     {
-        internal void SetMovingDirection()
+        //internal void SetMovingDirection()
+        //{
+        //    switch (Global.LastButton)
+        //    {
+        //        case Key.Left:
+        //            X_Vector = -10;
+        //            Y_Vector = 0;
+        //            break;
+        //        case Key.A:
+        //            X_Vector = -10;
+        //            Y_Vector = 0;
+        //            break;
+        //        case Key.Right:
+        //            X_Vector = 10;
+        //            Y_Vector = 0;
+        //            break;
+        //        case Key.D:
+        //            X_Vector = 10;
+        //            Y_Vector = 0;
+        //            break;
+        //        case Key.Down:
+        //            X_Vector = 0;
+        //            Y_Vector = 10;
+        //            break;
+        //        case Key.S:
+        //            X_Vector = 0;
+        //            Y_Vector = 10;
+        //            break;
+        //        case Key.Up:
+        //            X_Vector = 0;
+        //            Y_Vector = -10;
+        //            break;
+        //        case Key.W:
+        //            X_Vector = 0;
+        //            Y_Vector = -10;
+        //            break;
+    //}
+        //    }// Spielersteuerung
+    internal void SetMovingDirection()
         {
-            switch (Global.LastButton)
+            //Links-Unten
+            if ((Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left)) && (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down)))
             {
-                case Key.Left:
-                    X_Vector = -10;
-                    Y_Vector = 0;
-                    break;
-                case Key.Right:
-                    X_Vector = 10;
-                    Y_Vector = 0;
-                    break;
-                case Key.Down:
-                    X_Vector = 0;
-                    Y_Vector = 10;
-                    break;
-                case Key.Up:
-                    X_Vector = 0;
-                    Y_Vector = -10;
-                    break;
+                X_Vector = -10 * Math.Cos(315);
+                Y_Vector = 10 * Math.Sin(315);
+            }
+            // Links-Oben
+            else if ((Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left)) && (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up)))
+            {
+                X_Vector = -10 * Math.Cos(45);
+                Y_Vector = -10 * Math.Sin(45);
+            }
+            // Rechts-Unten
+            else if ((Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right)) && (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down)))
+            {
+                X_Vector = 10 * Math.Cos(315);
+                Y_Vector = 10 * Math.Sin(315);
+            }
+            // Rechts-Oben
+            else if ((Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right)) && (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up)))
+            {
+                X_Vector = 10 * Math.Cos(45);
+                Y_Vector = -10 * Math.Sin(45);
+            }
+            // Links
+            else if (Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left))
+            {
+                X_Vector = -10;
+                Y_Vector = 0;
+            }
+            // Rechts
+            else if (Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right))
+            {
+                X_Vector = 10;
+                Y_Vector = 0;
+            }
+            // Unten
+            else if (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down))
+            {
+                X_Vector = 0;
+                Y_Vector = 10;
+            }
+            // Oben
+            else if (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up))
+            {
+                X_Vector = 0;
+                Y_Vector = -10;
             }
         }
         internal void Design()
@@ -52,7 +119,7 @@ namespace SpaceShooter
 
             Shape.Points = myPointCollection;
         }
-        internal void Collision()
+        internal void BorderCollision()
         {
             if (X_Position <= 0 && X_Vector < 0)
             {

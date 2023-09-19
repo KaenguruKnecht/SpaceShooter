@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 using System.Windows.Shapes;
 
 namespace SpaceShooter
@@ -15,8 +9,8 @@ namespace SpaceShooter
         protected Polygon Shape { get { return _shape; } set { _shape = value; } }
         internal double X_Position { get; set; }
         internal double Y_Position { get; set; }
-        internal int X_Vector { get; set; }
-        internal int Y_Vector { get; set; }
+        internal double X_Vector { get; set; }
+        internal double Y_Vector { get; set; }
         internal bool Alive { get; set; }
 
         internal void Move()
