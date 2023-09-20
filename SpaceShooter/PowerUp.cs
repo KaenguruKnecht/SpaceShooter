@@ -10,6 +10,7 @@ namespace SpaceShooter
 {
     internal class PowerUp : SpaceObjekt
     {
+        internal static List<PowerUp> PowerUps = new List<PowerUp>();
         internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();

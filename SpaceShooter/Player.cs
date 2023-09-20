@@ -101,7 +101,7 @@ namespace SpaceShooter
                 Y_Vector = -10;
             }
         }
-        internal void Design()
+        internal new void Design()
         {
             PointCollection myPointCollection = new PointCollection();
 

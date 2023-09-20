@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -6,6 +7,7 @@ namespace SpaceShooter
 {
     internal class PewPew : SpaceObjekt
     {
+        internal static List<PewPew> PewPews = new List<PewPew>();
         internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();
