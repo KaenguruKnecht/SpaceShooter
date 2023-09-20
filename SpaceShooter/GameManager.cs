@@ -13,7 +13,7 @@ namespace SpaceShooter
         static DispatcherTimer? _timer { get; set; }
         static Player _testShip = new Player();
         // static List<Asteroid> Asteroids = new List<Asteroid>();
-        static EllipseGeometry myEllipseGeometry = new EllipseGeometry();
+        static List<EllipseGeometry> myEllipseGeometry;
 
         internal static void Initialize()
         {
@@ -76,23 +76,24 @@ namespace SpaceShooter
                 for (int i = 0; i < Asteroid.Asteroids.Count; i++)
                 {
                     // Hitbox Asteroid
-                
-                    myEllipseGeometry.RadiusX = Global.LaneSize / 2;
-                    myEllipseGeometry.RadiusY = Global.LaneSize / 2;
-                    myEllipseGeometry.Center = new Point(Asteroid.Asteroids[i].X_Position, Asteroid.Asteroids[i].Y_Position);
-                    var ellipse1Geom = myEllipseGeometry;
+                    var EllipseAsteroid = new EllipseGeometry();
+                    EllipseAsteroid.RadiusX = Global.LaneSize / 2;
+                    EllipseAsteroid.RadiusY = Global.LaneSize / 2;
+                    EllipseAsteroid.Center = new Point(Asteroid.Asteroids[i].X_Position, Asteroid.Asteroids[i].Y_Position);
+                    var ellipse1Geom = EllipseAsteroid;
                     for (int j = 0; j < PewPew.PewPews.Count; j++)
                     {
                         // Hitbox Schuss
-                        myEllipseGeometry.Center = new Point(PewPew.PewPews[j].X_Position, PewPew.PewPews[j].Y_Position);
-                        myEllipseGeometry.RadiusX = 5;
-                        myEllipseGeometry.RadiusY = 5;
-                        var ellipse2Geom = myEllipseGeometry;
+                        var EllipsePewPew = new EllipseGeometry();
+                        EllipsePewPew.Center = new Point(PewPew.PewPews[j].X_Position, PewPew.PewPews[j].Y_Position);
+                        EllipsePewPew.RadiusX = 5;
+                        EllipsePewPew.RadiusY = 5;
+                        var ellipse2Geom = EllipsePewPew;
 
                         var hit = ellipse2Geom.FillContainsWithDetail(ellipse1Geom);
 
                         // Treffer Abfrage
-                        if (hit != IntersectionDetail.Empty)
+                        if (hit == IntersectionDetail.Intersects)
                         {
                             Asteroid.Asteroids[i].Alive = false;
                             PewPew.PewPews[j].Alive = false;
