@@ -12,8 +12,7 @@ namespace SpaceShooter
     {
         static DispatcherTimer? _timer { get; set; }
         static Player _testShip = new Player();
-        // static List<Asteroid> Asteroids = new List<Asteroid>();
-        static List<EllipseGeometry> myEllipseGeometry;
+
 
         internal static void Initialize()
         {
@@ -32,6 +31,8 @@ namespace SpaceShooter
             // Spielerschiff erstellen
             _testShip = new Player();
             _testShip.Design();
+            Asteroid._asteroids.Add(new Asteroid());
+            PowerUp._powerUps.Add(new PowerUp());
         }
 
         internal static void OnTick(object sender, EventArgs e)
@@ -39,69 +40,14 @@ namespace SpaceShooter
             // Spawn Timer
             if (Keyboard.IsKeyDown(Key.Space) && Global.PewPewTimer == 0)
             {
-                Global.CurrentShipLocation_X = _testShip.X_Position;
-                Global.CurrentShipLocation_Y = _testShip.Y_Position;
-                PewPew.PewPews.Add(new PewPew());
-                PewPew.PewPews[PewPew.PewPews.Count - 1].Design();
-                Global.PewPewTimer = 1;
+                _testShip.PlayerShoot();
             }
             else if (Global.PewPewTimer != 0)
             {
                 Global.PewPewTimer--;
             }
-            if (Global.AsteroidTimer == 0)
-            {
-                Asteroid.Asteroids.Add(new Asteroid());
-                Asteroid.Asteroids[Asteroid.Asteroids.Count - 1].Design();
-                Global.AsteroidTimer = 30;
-            }// Wann ein neuer Asteroid gespawnt wird
-            else
-            {
-                Global.AsteroidTimer--;
-            }
-            if (Global.PowerUpTimer == 0)
-            {
-                PowerUp.PowerUps.Add(new PowerUp());
-                PowerUp.PowerUps[PowerUp.PowerUps.Count - 1].Design();
-                Global.PowerUpTimer = 30;
-            }// Wann ein neues Power Up gespawnt wird
-            else
-            {
-                Global.PowerUpTimer--;
-            }
-
-            // Objektkollisionsabfragen
-            if (Asteroid.Asteroids.Count > 0 && PewPew.PewPews.Count > 0)
-            {
-                for (int i = 0; i < Asteroid.Asteroids.Count; i++)
-                {
-                    // Hitbox Asteroid
-                    var EllipseAsteroid = new EllipseGeometry();
-                    EllipseAsteroid.RadiusX = Global.LaneSize / 2;
-                    EllipseAsteroid.RadiusY = Global.LaneSize / 2;
-                    EllipseAsteroid.Center = new Point(Asteroid.Asteroids[i].X_Position, Asteroid.Asteroids[i].Y_Position);
-                    var ellipse1Geom = EllipseAsteroid;
-                    for (int j = 0; j < PewPew.PewPews.Count; j++)
-                    {
-                        // Hitbox Schuss
-                        var EllipsePewPew = new EllipseGeometry();
-                        EllipsePewPew.Center = new Point(PewPew.PewPews[j].X_Position, PewPew.PewPews[j].Y_Position);
-                        EllipsePewPew.RadiusX = 5;
-                        EllipsePewPew.RadiusY = 5;
-                        var ellipse2Geom = EllipsePewPew;
-
-                        var hit = ellipse2Geom.FillContainsWithDetail(ellipse1Geom);
-
-                        // Treffer Abfrage
-                        if (hit == IntersectionDetail.Intersects)
-                        {
-                            Asteroid.Asteroids[i].Alive = false;
-                            PewPew.PewPews[j].Alive = false;
-                            hit = IntersectionDetail.Empty;
-                        }
-                    }
-                }
-            }
+            Asteroid._asteroids[0].AsteroidSpawnTimer();
+            Asteroid._asteroids[0].AsteroidPewPewCollision();
 
             // Spielerschiff
             _testShip.RemoveFromCanvas();
@@ -111,28 +57,9 @@ namespace SpaceShooter
             _testShip.Show();
 
             // Listen von Objekten
-            foreach (Asteroid item in Asteroid.Asteroids)
-            {
-                item.BorderCollision();
-                item.RemoveFromCanvas();
-                item.Move();
-                item.Show();
-            }// Entfernen, Bewegen, Designen und Anzeigen aller Asteroiden
-            foreach (PowerUp item in PowerUp.PowerUps)
-            {
-                item.BorderCollision();
-                item.RemoveFromCanvas();
-                item.Move();
-                item.Show();
-            }// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
-            foreach (PewPew item in PewPew.PewPews)
-            {
-                item.BorderCollision();
-                item.RemoveFromCanvas();
-                item.Move();
-                item.Design();
-                item.Show();
-            }// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
+            PowerUp._powerUps[0].forEveryPowerUp();
+            Asteroid._asteroids[0].forEveryAsteroid();
+            _testShip.forEveryPewPew();
         }
     }
 }

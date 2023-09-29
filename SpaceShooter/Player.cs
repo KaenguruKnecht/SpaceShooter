@@ -101,6 +101,14 @@ namespace SpaceShooter
                 Y_Vector = -10;
             }
         }
+        internal void PlayerShoot()
+        {
+            Global.CurrentShipLocation_X = X_Position;
+            Global.CurrentShipLocation_Y = Y_Position;
+            Ship._pewpews.Add(new PewPew());
+            Ship._pewpews[Ship._pewpews.Count - 1].Design();
+            Global.PewPewTimer = 1;
+        }
         internal new void Design()
         {
             PointCollection myPointCollection = new PointCollection();

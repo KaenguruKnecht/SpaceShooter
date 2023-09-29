@@ -10,7 +10,7 @@ namespace SpaceShooter
 {
     internal class PowerUp : SpaceObjekt
     {
-        internal static List<PowerUp> PowerUps = new List<PowerUp>();
+        internal static List<PowerUp> _powerUps = new List<PowerUp>();
         internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();
@@ -29,6 +29,29 @@ namespace SpaceShooter
 
             Shape.Points = myPointCollection;
         }
+        internal void PowerUpSpawnTimer()
+        {
+            if (Global.PowerUpTimer == 0)
+            {
+                _powerUps.Add(new PowerUp());
+                _powerUps[_powerUps.Count - 1].Design();
+                Global.PowerUpTimer = 30;
+            }
+            else
+            {
+                Global.PowerUpTimer--;
+            }
+        }
+        internal void forEveryPowerUp()
+        {
+            foreach (PowerUp item in _powerUps)
+            {
+                item.BorderCollision();
+                item.RemoveFromCanvas();
+                item.Move();
+                item.Show();
+            }
+        }// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
         internal void BorderCollision()
         {
             if (X_Position <= 0)

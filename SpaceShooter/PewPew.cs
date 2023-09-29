@@ -7,7 +7,7 @@ namespace SpaceShooter
 {
     internal class PewPew : SpaceObjekt
     {
-        internal static List<PewPew> PewPews = new List<PewPew>();
+
         internal void Design()
         {
             PointCollection myPointCollection = new PointCollection();
@@ -30,12 +30,13 @@ namespace SpaceShooter
                 Alive = false;
             }
         }
+
         internal PewPew()
         {
             Alive = true;
             X_Position = Global.CurrentShipLocation_X + 45;
             Y_Position = Global.CurrentShipLocation_Y + 10;
-            X_Vector = 15;
+            X_Vector = 10;
         }
     }
 }
