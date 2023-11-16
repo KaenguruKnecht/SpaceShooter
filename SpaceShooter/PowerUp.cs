@@ -11,7 +11,7 @@ namespace SpaceShooter
     internal class PowerUp : SpaceObjekt
     {
         internal static List<PowerUp> _powerUps = new List<PowerUp>();
-        internal void Design()
+        internal override void Design()
         {
             PointCollection myPointCollection = new PointCollection();
 
@@ -54,7 +54,7 @@ namespace SpaceShooter
         }// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
         internal void BorderCollision()
         {
-            if (X_Position <= 0)
+            if (X_Position <= 100)
             {
                 Alive = false;
             }

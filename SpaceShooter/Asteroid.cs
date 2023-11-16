@@ -9,7 +9,7 @@ namespace SpaceShooter
     {
         internal static int variedRadius;
         internal static List<Asteroid> _asteroids = new List<Asteroid>();
-        internal void Design()
+        internal override void Design()
         {
             PointCollection myPointCollection = new PointCollection();
 
@@ -26,7 +26,7 @@ namespace SpaceShooter
         }
         internal void BorderCollision()
         {
-            if (X_Position <= 0)
+            if (X_Position <= 100)
             {
                 Alive = false;
             }
@@ -34,15 +34,15 @@ namespace SpaceShooter
         internal void AsteroidPewPewCollision()
         {
             // Objektkollisionsabfragen
-            if (Asteroid._asteroids.Count > 0 && Ship._pewpews.Count > 0)
+            if (_asteroids.Count > 0 && Ship._pewpews.Count > 0)
             {
-                for (int i = 0; i < Asteroid._asteroids.Count; i++)
+                for (int i = 0; i < _asteroids.Count; i++)
                 {
                     // Hitbox Asteroid
                     var EllipseAsteroid = new EllipseGeometry();
                     EllipseAsteroid.RadiusX = Global.LaneSize / 2;
                     EllipseAsteroid.RadiusY = Global.LaneSize / 2;
-                    EllipseAsteroid.Center = new Point(Asteroid._asteroids[i].X_Position, Asteroid._asteroids[i].Y_Position);
+                    EllipseAsteroid.Center = new Point(_asteroids[i].X_Position, _asteroids[i].Y_Position);
                     var ellipse1Geom = EllipseAsteroid;
                     for (int j = 0; j < Ship._pewpews.Count; j++)
                     {
@@ -58,17 +58,19 @@ namespace SpaceShooter
                         // Treffer Abfrage
                         if (hit == IntersectionDetail.Intersects)
                         {
-                            Asteroid._asteroids[i].Alive = false;
-                            //Asteroid._asteroids[i].RemoveFromCanvas();
-                            //Asteroid._asteroids.RemoveAt(i);
+                            _asteroids[i].Alive = false;
+                            _asteroids[i].RemoveFromCanvas();
+                            _asteroids.RemoveAt(i);
+
                             Ship._pewpews[j].Alive = false;
-                            //Ship._pewpews[j].RemoveFromCanvas();
-                            //Ship._pewpews.RemoveAt(j);
-                            hit = IntersectionDetail.Empty;
+                            Ship._pewpews[j].RemoveFromCanvas();
+                            Ship._pewpews.RemoveAt(j);
+
+                            // hit = IntersectionDetail.Empty;                    DIES IST EIN FEHLER
                         }
                     }
                 }
-            } 
+            }
         }
         internal void AsteroidSpawnTimer()
         {
@@ -98,7 +100,7 @@ namespace SpaceShooter
             Alive = true;
             int Lane = Global.Rnd.Next(0, 8);
             variedRadius = Global.LaneSize / 2;
-            X_Vector = Global.Rnd.Next(-20, -5);
+            X_Vector = Global.Rnd.Next(-10, -5);
             X_Position = Global.SpaceCanvas.ActualWidth;
             Y_Position = Global.Lanes[Lane];
         }

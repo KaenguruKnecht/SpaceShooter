@@ -57,8 +57,14 @@ namespace SpaceShooter
             _testShip.Show();
 
             // Listen von Objekten
-            PowerUp._powerUps[0].forEveryPowerUp();
-            Asteroid._asteroids[0].forEveryAsteroid();
+            if (PowerUp._powerUps.Count > 0)
+            {
+                PowerUp._powerUps[0].forEveryPowerUp();
+            }
+            if (Asteroid._asteroids.Count > 0)
+            {
+                Asteroid._asteroids[0].forEveryAsteroid();
+            }
             _testShip.forEveryPewPew();
         }
     }

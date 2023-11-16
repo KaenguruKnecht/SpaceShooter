@@ -8,7 +8,7 @@ namespace SpaceShooter
     internal class PewPew : SpaceObjekt
     {
 
-        internal void Design()
+        internal override void Design()
         {
             PointCollection myPointCollection = new PointCollection();
             Shape.Fill = Brushes.Yellow;
@@ -25,7 +25,7 @@ namespace SpaceShooter
         }
         internal void BorderCollision()
         {
-            if (X_Position >= Global.SpaceCanvas.ActualWidth)
+            if (X_Position >= Global.SpaceCanvas.ActualWidth - 100)
             {
                 Alive = false;
             }

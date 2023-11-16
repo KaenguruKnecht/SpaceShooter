@@ -3,7 +3,7 @@ using System.Windows.Shapes;
 
 namespace SpaceShooter
 {
-    internal class SpaceObjekt
+    internal abstract class SpaceObjekt
     {
         private Polygon _shape = new Polygon();
         protected Polygon Shape { get { return _shape; } set { _shape = value; } }
@@ -31,5 +31,6 @@ namespace SpaceShooter
         {
             Global.SpaceCanvas.Children.Remove(_shape);
         }
+        internal abstract void Design();
     }
 }

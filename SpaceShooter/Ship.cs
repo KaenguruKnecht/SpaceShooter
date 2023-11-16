@@ -10,21 +10,41 @@ namespace SpaceShooter
     internal class Ship : SpaceObjekt
     {
         internal static List<PewPew> _pewpews = new List<PewPew>();
-        internal void Design()
+        internal override void Design()
         {
 
         }
         internal void forEveryPewPew()
         {
-            foreach (PewPew item in Ship._pewpews)
+            foreach (PewPew item in _pewpews)
             {
                 item.BorderCollision();
                 item.RemoveFromCanvas();
                 item.Move();
-                item.Design();
                 item.Show();
             }
         }// Entfernen, Bewegen, Designen und Anzeigen aller
+        //internal void forEveryPewPew()
+        //{
+        //    if (_pewpews.Count > 0)
+        //    {
+        //        for (int i = _pewpews.Count - 1; i == -1; i--)
+        //        {
+        //            _pewpews[i].RemoveFromCanvas();
+        //            _pewpews[i].BorderCollision();
+        //            if (_pewpews[i].Alive == false)
+        //            {
+        //                _pewpews.RemoveAt(i);
+        //            }
+        //            else
+        //            {
+        //                _pewpews[i].Move();
+        //                _pewpews[i].Design();
+        //                _pewpews[i].Show();
+        //            }
+        //        }
+        //    }
+        //}// Entfernen, Bewegen, Designen und Anzeigen aller
         internal Ship() 
         {
             
