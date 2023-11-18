@@ -64,6 +64,8 @@ namespace SpaceShooter
                             Ship._pewpews[j].RemoveFromCanvas();
                             _asteroids.RemoveAt(i);
                             Ship._pewpews.RemoveAt(j);
+                            Global.Score += 100;
+                            Global.TextBlockScore.Text = $"Score: {Global.Score}";
                         }
                     }
                 }

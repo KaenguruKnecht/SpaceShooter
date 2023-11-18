@@ -17,6 +17,7 @@ namespace SpaceShooter
         internal static List<int> Lanes { get; set; }
         internal static Random Rnd = new Random();
         internal static int Lives = 3;
+        internal static int Score = 0;
         internal static int LaneSize = 0;
         internal static int AsteroidTimer = 30;
         internal static int PowerUpTimer = 30;
@@ -24,6 +25,7 @@ namespace SpaceShooter
         internal static double CurrentShipLocation_X;
         internal static double CurrentShipLocation_Y;
         internal static TextBlock TextBlockLeben;
+        internal static TextBlock TextBlockScore;
 
         static Global()
         {

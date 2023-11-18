@@ -73,19 +73,7 @@ namespace SpaceShooter
                     i--;
                 }
             }
-            for (int i = 0; i < PowerUp._powerUps.Count; i++)
-            {
-                PowerUp._powerUps[i].RemoveFromCanvas();
-                if (PowerUp._powerUps[i].BorderCollision(i) == false)
-                {
-                    PowerUp._powerUps[i].Move();
-                    PowerUp._powerUps[i].Show();
-                }
-                else
-                {
-                    i--;
-                }
-            }
+
             for (int i = 0; i < Ship._pewpews.Count; i++)
             {
                 Ship._pewpews[i].RemoveFromCanvas();

@@ -38,7 +38,7 @@ namespace SpaceShooter
             Alive = true;
             X_Position = Global.CurrentShipLocation_X + 45;
             Y_Position = Global.CurrentShipLocation_Y + 10;
-            X_Vector = 15;
+            X_Vector = 10;
         }
     }
 }

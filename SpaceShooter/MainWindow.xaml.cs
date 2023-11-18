@@ -21,6 +21,7 @@ namespace SpaceShooter
             {
                 Global.SpaceCanvas = SpaceCanvas;
                 Global.TextBlockLeben = TextBlockLeben;
+                Global.TextBlockScore = TextBlockScore;
                 GameManager.Initialize();
                 Alreadystartet = true;
             }

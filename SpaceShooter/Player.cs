@@ -52,50 +52,50 @@ namespace SpaceShooter
             //Links-Unten
             if ((Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left)) && (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down)))
             {
-                X_Vector = -10 * Math.Cos(315);
-                Y_Vector = 10 * Math.Sin(315);
+                X_Vector = -8 * Math.Cos(315);
+                Y_Vector = 8 * Math.Sin(315);
             }
             // Links-Oben
             else if ((Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left)) && (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up)))
             {
-                X_Vector = -10 * Math.Cos(45);
-                Y_Vector = -10 * Math.Sin(45);
+                X_Vector = -8 * Math.Cos(45);
+                Y_Vector = -8 * Math.Sin(45);
             }
             // Rechts-Unten
             else if ((Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right)) && (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down)))
             {
-                X_Vector = 10 * Math.Cos(315);
-                Y_Vector = 10 * Math.Sin(315);
+                X_Vector = 8 * Math.Cos(315);
+                Y_Vector = 8 * Math.Sin(315);
             }
             // Rechts-Oben
             else if ((Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right)) && (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up)))
             {
-                X_Vector = 10 * Math.Cos(45);
-                Y_Vector = -10 * Math.Sin(45);
+                X_Vector = 8 * Math.Cos(45);
+                Y_Vector = -8 * Math.Sin(45);
             }
             // Links
             else if (Keyboard.IsKeyDown(Key.A) || Keyboard.IsKeyDown(Key.Left))
             {
-                X_Vector = -10;
+                X_Vector = -8;
                 Y_Vector = 0;
             }
             // Rechts
             else if (Keyboard.IsKeyDown(Key.D) || Keyboard.IsKeyDown(Key.Right))
             {
-                X_Vector = 10;
+                X_Vector = 8;
                 Y_Vector = 0;
             }
             // Unten
             else if (Keyboard.IsKeyDown(Key.S) || Keyboard.IsKeyDown(Key.Down))
             {
                 X_Vector = 0;
-                Y_Vector = 10;
+                Y_Vector = 8;
             }
             // Oben
             else if (Keyboard.IsKeyDown(Key.W) || Keyboard.IsKeyDown(Key.Up))
             {
                 X_Vector = 0;
-                Y_Vector = -10;
+                Y_Vector = -8;
             }
         }
         internal void PlayerShoot()
@@ -104,7 +104,7 @@ namespace SpaceShooter
             Global.CurrentShipLocation_Y = Y_Position;
             _pewpews.Add(new PewPew());
             _pewpews[_pewpews.Count - 1].Design();
-            Global.PewPewTimer = 1;
+            Global.PewPewTimer = 10;
         }
         internal new void Design()
         {
