@@ -20,12 +20,9 @@ namespace SpaceShooter
         }
         internal void Show()
         {
-            if (Alive)
-            {
-                Canvas.SetLeft(_shape, X_Position);
-                Canvas.SetTop(_shape, Y_Position);
-                Global.SpaceCanvas.Children.Add(_shape);
-            }
+            Canvas.SetLeft(_shape, X_Position);
+            Canvas.SetTop(_shape, Y_Position);
+            Global.SpaceCanvas.Children.Add(_shape);
         }
         internal void RemoveFromCanvas()
         {

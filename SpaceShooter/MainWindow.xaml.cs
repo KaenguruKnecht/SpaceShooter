@@ -20,6 +20,7 @@ namespace SpaceShooter
             if (!Alreadystartet)
             {
                 Global.SpaceCanvas = SpaceCanvas;
+                Global.TextBlockLeben = TextBlockLeben;
                 GameManager.Initialize();
                 Alreadystartet = true;
             }

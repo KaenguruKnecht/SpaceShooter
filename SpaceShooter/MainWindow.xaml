@@ -9,6 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid >
         <Canvas x:Name="SpaceCanvas" Background="Black"></Canvas>
+        <TextBlock x:Name="TextBlockLeben" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50" Width="200" Text="Leben: 3" Foreground="Red" FontSize="35"></TextBlock>
     </Grid>
     
 </Window>

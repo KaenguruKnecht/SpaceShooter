@@ -23,12 +23,14 @@ namespace SpaceShooter
             }
             Shape.Points = myPointCollection;
         }
-        internal void BorderCollision()
+        internal bool BorderCollision(int i)
         {
-            if (X_Position >= Global.SpaceCanvas.ActualWidth - 100)
+            if (X_Position >= Global.SpaceCanvas.ActualWidth)
             {
-                Alive = false;
+                Ship._pewpews.RemoveAt(i);
+                return true;
             }
+            return false;
         }
 
         internal PewPew()

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Windows;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
+
 
 namespace SpaceShooter
 {
@@ -105,8 +102,8 @@ namespace SpaceShooter
         {
             Global.CurrentShipLocation_X = X_Position;
             Global.CurrentShipLocation_Y = Y_Position;
-            Ship._pewpews.Add(new PewPew());
-            Ship._pewpews[Ship._pewpews.Count - 1].Design();
+            _pewpews.Add(new PewPew());
+            _pewpews[_pewpews.Count - 1].Design();
             Global.PewPewTimer = 1;
         }
         internal new void Design()
@@ -144,6 +141,22 @@ namespace SpaceShooter
             if (Y_Position >= Global.SpaceCanvas.ActualHeight - 30 && Y_Vector > 0)
             {
                 Y_Vector = 0;
+            }
+        }
+        internal void PlayerCollision()
+        {
+            Rect ShipRect = new Rect(X_Position, Y_Position, 50, 30);
+            for (int i = 0; i < Asteroid._asteroids.Count; i++)
+            {
+                Rect AsteroidRect = new Rect(Asteroid._asteroids[i].X_Position - Global.LaneSize / 2, Asteroid._asteroids[i].Y_Position - Global.LaneSize / 2, Global.LaneSize, Global.LaneSize);
+                bool intersects = ShipRect.IntersectsWith(AsteroidRect);
+                if (intersects)
+                {
+                    Asteroid._asteroids[i].RemoveFromCanvas();
+                    Asteroid._asteroids.RemoveAt(i);
+                    Global.Lives--;
+                    Global.TextBlockLeben.Text = $"Leben: {Global.Lives}";
+                }
             }
         }
         internal Player()

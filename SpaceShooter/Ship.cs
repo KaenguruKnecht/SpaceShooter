@@ -14,16 +14,16 @@ namespace SpaceShooter
         {
 
         }
-        internal void forEveryPewPew()
-        {
-            foreach (PewPew item in _pewpews)
-            {
-                item.BorderCollision();
-                item.RemoveFromCanvas();
-                item.Move();
-                item.Show();
-            }
-        }// Entfernen, Bewegen, Designen und Anzeigen aller
+        //internal void forEveryPewPew()
+        //{
+        //    foreach (PewPew item in _pewpews)
+        //    {
+        //        item.BorderCollision();
+        //        item.RemoveFromCanvas();
+        //        item.Move();
+        //        item.Show();
+        //    }
+        //}// Entfernen, Bewegen, Designen und Anzeigen aller
         //internal void forEveryPewPew()
         //{
         //    if (_pewpews.Count > 0)

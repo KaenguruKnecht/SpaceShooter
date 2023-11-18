@@ -18,9 +18,9 @@ namespace SpaceShooter
             Shape.Fill = Brushes.Red;
 
             Point Point0 = new Point(0, 0);
-            Point Point1 = new Point(50, 10);
-            Point Point2 = new Point(0, 20);
-            Point Point3 = new Point(10, 10);
+            Point Point1 = new Point(-50, -10);
+            Point Point2 = new Point(-0, -20);
+            Point Point3 = new Point(-10, -10);
 
             myPointCollection.Add(Point0);
             myPointCollection.Add(Point1);
@@ -31,38 +31,40 @@ namespace SpaceShooter
         }
         internal void PowerUpSpawnTimer()
         {
-            if (Global.PowerUpTimer == 0)
+            if (Global.PowerUpTimer > 0)
+            {
+                Global.PowerUpTimer--;
+            }
+            else
             {
                 _powerUps.Add(new PowerUp());
                 _powerUps[_powerUps.Count - 1].Design();
                 Global.PowerUpTimer = 30;
             }
-            else
-            {
-                Global.PowerUpTimer--;
-            }
         }
-        internal void forEveryPowerUp()
+        //internal void forEveryPowerUp()
+        //{
+        //    foreach (PowerUp item in _powerUps)
+        //    {
+        //        item.BorderCollision();
+        //        item.RemoveFromCanvas();
+        //        item.Move();
+        //        item.Show();
+        //    }
+        //}// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
+        internal bool BorderCollision(int i)
         {
-            foreach (PowerUp item in _powerUps)
+            if (X_Position <= 0)
             {
-                item.BorderCollision();
-                item.RemoveFromCanvas();
-                item.Move();
-                item.Show();
+                _powerUps.RemoveAt(i);
+                return true;
             }
-        }// Entfernen, Bewegen, Designen und Anzeigen aller Power Ups
-        internal void BorderCollision()
-        {
-            if (X_Position <= 100)
-            {
-                Alive = false;
-            }
+            return false;
         }
         internal PowerUp() 
         {
-            int Lane = Global.Rnd.Next(0, 8);
-            X_Vector = Global.Rnd.Next(-40, -5);
+            int Lane = Global.Rnd.Next(8);
+            X_Vector = Global.Rnd.Next(-40, -6);
             Alive = true;
             X_Position = Global.SpaceCanvas.ActualWidth;
             Y_Position = Global.Lanes[Lane];
